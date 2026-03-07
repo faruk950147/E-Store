@@ -71,10 +71,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def image_tag(self):
-        img = getattr(self, "image", None)
-        if img and hasattr(img, "url"):
-            return mark_safe(f'<img src="{img.url}" style="width:50px;height:50px;border-radius:5px;" />')
-        return mark_safe("<span>No Image</span>")
+        # getattr() returns the value of an attribute.
+        # If the attribute does not exist, it returns the default value (if provided).
+        img = getattr(self, 'image', None)
+        # hasattr() checks if an object has a specific attribute.
+        # It returns True if the attribute exists, otherwise False.
+        if img and hasattr(img, 'url'):
+            return mark_safe(
+                f'<img src="{img.url}" style="max-width:50px; max-height:50px;" />'
+            )
+        return mark_safe('<span>No Image</span>')
 
     def __str__(self):
         return self.username
