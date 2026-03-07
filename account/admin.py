@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from account.models import User, OTP
 
 class UserAdmin(BaseUserAdmin):
     list_display = ('id', 'username', 'email', 'phone', 'country', 'city', 'home_city', 'zip_code', 
@@ -35,3 +35,13 @@ class UserAdmin(BaseUserAdmin):
         return self.readonly_fields  # new create
 
 admin.site.register(User, UserAdmin)
+
+class OTPAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'otp_hash', 'is_used', 'attempts', 'created_at')
+    search_fields = ('user__username', 'user__email')
+    ordering = ('id',)
+    
+    def get_readonly_fields(self, request, obj=None):
+        return ('id', 'user', 'otp_hash', 'is_used', 'attempts', 'created_at')
+
+admin.site.register(OTP, OTPAdmin)
