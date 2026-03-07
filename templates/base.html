@@ -10,6 +10,11 @@
 
         <!-- Favicon -->
         <link href="{% static 'img/favicon.ico' %}" rel="icon">
+        
+        <!-- Alertify CSS -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/themes/default.min.css"/>
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -54,6 +59,10 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        
+        <!-- Alertify JS -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+        {% include "alert.html" %}
         
         <script src="{% static 'lib/easing/easing.min.js' %}"></script>
         <script src="{% static 'lib/slick/slick.min.js' %}"></script>
