@@ -1,7 +1,13 @@
-from django.shortcuts import render
 from django.views import View
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.admin.sites import never_cache
+from django.contrib.auth.admin import method_decorator
+from django.contrib import messages
 
-# Create your views here.
+
+# Signup View
+@method_decorator(never_cache, name='dispatch')
 class SignupView(View):
     def get(self, request):
         return render(request, 'account/signup.html')
@@ -9,7 +15,7 @@ class SignupView(View):
     def post(self, request):
         return render(request, 'account/signup.html')
 
-
+# Login View
 class LoginView(View):
     def get(self, request):
         return render(request, 'account/login.html')
@@ -17,3 +23,12 @@ class LoginView(View):
     def post(self, request):
         return render(request, 'account/login.html')
 
+
+class LogoutView(View):
+    def get(self, request):
+        try:
+            logout(request)
+            messages.success(request, "You have been logged out successfully.")
+        except Exception as e:
+            messages.error(request, f"Logout error: {e}")
+        return redirect('login')
