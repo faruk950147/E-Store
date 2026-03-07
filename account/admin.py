@@ -31,7 +31,8 @@ class UserAdmin(BaseUserAdmin):
         # if obj exists (i.e., edit mode)
         if obj:
             # you can add more fields here
-            return self.readonly_fields + ('username', 'email')
+            return self.readonly_fields + ('id', 'username', 'email', 'phone', 'password1', 'password2', 'country', 'city', 
+                       'home_city', 'zip_code', 'address', 'image_tag')
         return self.readonly_fields  # new create
 
 admin.site.register(User, UserAdmin)
