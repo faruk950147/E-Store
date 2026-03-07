@@ -9,4 +9,8 @@ from django.utils.decorators import method_decorator
 class HomeView(View):
     def get(self, request):
         return render(request, 'store/home.html')
+    
+class ProductView(View):
+    def get(self, request):
+        return render(request, 'store/product-detail.html')
 
