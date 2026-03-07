@@ -16,6 +16,7 @@ class SignupView(View):
         return render(request, 'account/signup.html')
 
 # Login View
+@method_decorator(never_cache, name='dispatch')
 class LoginView(View):
     def get(self, request):
         return render(request, 'account/login.html')
@@ -23,7 +24,8 @@ class LoginView(View):
     def post(self, request):
         return render(request, 'account/login.html')
 
-
+# Logout View
+@method_decorator(never_cache, name='dispatch')
 class LogoutView(View):
     def get(self, request):
         try:
