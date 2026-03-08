@@ -33,8 +33,9 @@ class LogoutView(View):
         try:
             logout(request)
             logger.info(f"User logged out: {request.user.username} ({request.user.id})")
-            messages.success(request, "You have been logged out successfully.")
+            messages.success(request, f"{request.user.username} have been logged out successfully.")
         except Exception as e:
             logger.error(f"Logout error: {e}")
             messages.error(request, f"Logout error: {e}")
         return redirect('login')
+

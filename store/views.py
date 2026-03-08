@@ -11,13 +11,13 @@ logger = logging.getLogger('project')
 @method_decorator(never_cache, name='dispatch')
 class HomeView(View):
     def get(self, request):
-        logger.info("Home page accessed")
-        messages.success(request, 'Welcome to our store!')
+        logger.info(f"Home page accessed by user: {request.user.username}")
+        messages.success(request, f'Welcome to our store for user: {request.user.username}')
         return render(request, 'store/home.html')
     
 class ProductView(View):
     def get(self, request):
-        logger.info("Product details page accessed")
-        messages.success(request, 'Product details page loaded!')
+        logger.info(f"Product page accessed by user: {request.user.username}")
+        messages.success(request, f'Product details page loaded for user: {request.user.username}')
         return render(request, 'store/product-detail.html')
 
