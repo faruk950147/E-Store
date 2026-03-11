@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # third party
-    'import_export',
     # local
     'store.apps.StoreConfig',
     'account.apps.AccountConfig',
