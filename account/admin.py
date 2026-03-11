@@ -1,3 +1,4 @@
+'''
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from account.models import User, OTP
@@ -46,3 +47,20 @@ class OTPAdmin(admin.ModelAdmin):
         return ('id', 'user', 'otp_hash', 'is_used', 'attempts', 'created_at')
 
 admin.site.register(OTP, OTPAdmin)
+
+'''
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from account.models import User, OTP
+
+class UserResource(resources.ModelResource):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email', 'phone', 'country', 'city', 'home_city', 'zip_code', 'address', 'is_active')
+
+class UserAdmin(BaseUserAdmin, ImportExportModelAdmin):
+    resource_class = UserResource
+    list_display = ('id', 'username', 'email', 'phone', 'country', 'city', 'is_active')
+    search_fields = ('username', 'email', 'phone')
+    ordering = ('id',)
+    readonly_fields = ('image_tag',)
