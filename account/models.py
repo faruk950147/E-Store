@@ -39,10 +39,8 @@ class Manager(BaseUserManager):
 
 # Custom User
 class User(AbstractBaseUser, PermissionsMixin):
-    username_validator = UnicodeUsernameValidator()
-
-    username = models.CharField(max_length=150, unique=True, validators=[username_validator])
-    email = models.EmailField(unique=True, db_index=True)
+    username = models.CharField(max_length=150, unique=True, validators=[UnicodeUsernameValidator()])
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, unique=True, validators=[phone_validator])
 
     image = models.ImageField(upload_to="users/", default="defaults/default.jpg")
